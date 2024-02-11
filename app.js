@@ -1,30 +1,36 @@
-import {promises as fs} from "fs"
+import { promises as fs } from "fs";
 
 class ProductManager {
 
     constructor() {
-      this.path = "./productlist.json";
-      this.products = []
+        this.path = "./productlist.json";
+        this.products = [];
     }
-    static id= 0
-  
+    static id = 0;
+
+    writeProductsToFile = async () => {
+        await fs.writeFile(this.path, JSON.stringify(this.products, null, 2));
+    };
+
     addProduct = async (title, description, price, thumbnail, code, stock) => {
-
-        ProductManager.id += 1
+        ProductManager.id += 1;
     
-        const product = {
-            title,
-            description,
-            price,
-            thumbnail,
-            code,
-            stock,
-            id: ProductManager.id
-        };
-        this.products.push(product)
-
-        await fs.writeFile(this.path, JSON.stringify(this.products))
-
+        if (title && description && price && thumbnail && code && stock !== undefined) {
+            const product = {
+                title,
+                description,
+                price,
+                thumbnail,
+                code,
+                stock,
+                id: ProductManager.id
+            };
+            this.products.push(product);
+    
+            await this.writeProductsToFile();
+        } else {
+            console.error("Error: Todos los campos del producto deben ser proporcionados.");
+        }
     }
 
     readProducts = async () => {
@@ -37,9 +43,9 @@ class ProductManager {
         }
     }
 
-    getProduct = async () =>{
-        let reply = await this.readProducts()
-        return await console.log(reply)
+    getProduct = async () => {
+        let reply = await this.readProducts();
+        return await console.log(reply);
     }
 
     getProductById = async (id) => {
@@ -47,23 +53,23 @@ class ProductManager {
         let filter = getId.find(product => product.id === id);
         console.log(filter);
     }
-    
-    deleteproductById = async (id) => {
+
+    deleteProductById = async (id) => {
         let erase = await this.readProducts();
-        let productFiltered = erase.filter(products => products.id != id);
-        await fs.writeFile(this.path, JSON.stringify(productFiltered));
-        console.log("producto eliminado");
+        let productFiltered = erase.filter(products => products.id !== id);
+        await fs.writeFile(this.path, JSON.stringify(productFiltered, null, 2));
+        console.log("Producto eliminado");
     }
 
     updateProduct = async ({ id, ...newProductData }) => {
-        await this.deleteproductById(id);
+        await this.deleteProductById(id);
         let oldProducts = await this.readProducts();
-        let modifyProduct = [{ ...newProductData, id }, ...(oldProducts || [])]
-        await fs.writeFile(this.path, JSON.stringify(modifyProduct))
+        let modifyProduct = [{ ...newProductData, id }, ...(oldProducts || [])];
+        await fs.writeFile(this.path, JSON.stringify(modifyProduct, null, 2));
     }
 }
 
-const newProduct = new ProductManager()
+const newProduct = new ProductManager();
 
 newProduct.addProduct("Batidora Peabody", "Batidora de pie con múltiples velocidades y accesorios intercambiables", 50700 , "Img", 13)
 newProduct.addProduct("Lavadora samsung", "Lavadora de carga frontal con tecnología de ahorro de agua y energía", 130700 , "Img2", 24)
