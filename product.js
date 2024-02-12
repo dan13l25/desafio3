@@ -1,6 +1,6 @@
 import { promises as fs } from "fs";
 
-class ProductManager {
+export class ProductManager {
 
     constructor() {
         this.path = "./productlist.json";
@@ -28,9 +28,7 @@ class ProductManager {
             this.products.push(product);
     
             await this.writeProductsToFile();
-        } else {
-            console.error("Error: Todos los campos del producto deben ser proporcionados.");
-        }
+        } 
     }
 
     readProducts = async () => {
@@ -69,9 +67,8 @@ class ProductManager {
     }
 }
 
-const newProduct = new ProductManager();
 
-newProduct.addProduct("Batidora Peabody", "Batidora de pie con múltiples velocidades y accesorios intercambiables", 50700 , "Img", 13)
+/*newProduct.addProduct("Batidora Peabody", "Batidora de pie con múltiples velocidades y accesorios intercambiables", 50700 , "Img", 13)
 newProduct.addProduct("Lavadora samsung", "Lavadora de carga frontal con tecnología de ahorro de agua y energía", 130700 , "Img2", 24)
 newProduct.addProduct("Heladera Whirlpool", "Refrigerador de dos puertas con dispensador de agua y hielo", 108470, "Img3", 6)
 newProduct.addProduct("Aspiradora Dyson","Aspiradora sin bolsa con tecnología ciclónica para una potente succión", 76480, "Img4", 18)
@@ -85,4 +82,4 @@ newProduct.addProduct("Aire acondicionado Philco", "Aire acondicionado de alto r
 
 
 newProduct.addProduct()
-newProduct.getProductById(2)
+newProduct.getProductById(2)*/
