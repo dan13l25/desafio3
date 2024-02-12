@@ -2,7 +2,7 @@
   "name": "desafio3",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "type": "module", 
   "devDependencies": {
     "nodemon": "^3.0.3"
@@ -11,7 +11,8 @@
     "express": "^4.18.2"
   },
   "scripts": {
-    "test": "nodemon app.js"
+    "test": "nodemon server.js",
+    "server": "nodemon src/server.js"
   },
   "keywords": [],
   "author": "",

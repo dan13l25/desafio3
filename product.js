@@ -77,9 +77,4 @@ newProduct.addProduct("Televisor Sony", "Televisor LED de 55 pulgadas", 130060, 
 newProduct.addProduct("Cafetera Nespresso", "Máquina de café con sistema de cápsulas para preparar café espresso", 68312, "Img7", 32)
 newProduct.addProduct("Secadora LG", "Secadora de ropa con tecnología de secado rápido y eficiente", 88693, "Img8", 25)
 newProduct.addProduct("Plancha de Vapor", "Plancha de vapor con tecnología antiadherente y sistema antigoteo", 64788, "Img9", 39)
-newProduct.addProduct("Aire acondicionado Philco", "Aire acondicionado de alto rendimiento para el verano", 146351, "Img10", 58)
-
-
-
-newProduct.addProduct()
-newProduct.getProductById(2)*/
+newProduct.addProduct("Aire acondicionado Philco", "Aire acondicionado de alto rendimiento para el verano", 146351, "Img10", 58)*/
